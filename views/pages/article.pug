@@ -1,0 +1,32 @@
+extends ../index.pug
+
+block variables
+	- var template = 'article'
+
+block content
+	.article
+		.article__wrapper
+			h1.article__title Title
+
+			.article__media__number.clip__text
+				.article__media__number__text 18
+
+			.article__content
+				.article__content__item
+					.article__paragraph__wrapper
+							p.article__paragraph__text.
+								If the world moves on,&shy;
+								will the lights stay on
+					figure.article__content__media
+						img(src="images/matias-jacobi-lrNOAvCW5Qo-unsplash.jpg", alt="unsplash image")
+				.article__content__item
+					h3.article__subtitle.
+						There are still many dreams that may be interesting and related to other aspects. It also talks about emotions, what you should change and overcome for the better.
+					.article__content__item__bottom
+						figure.article__content__media
+							img(src="images/matt-collamer-8UG90AYPDW4-unsplash.jpg", alt="unsplash image")
+						.article__paragraph__wrapper
+							p.article__paragraph__text.
+								If the world moves on,&shy;
+								will the lights stay on
+
