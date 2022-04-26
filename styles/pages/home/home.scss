@@ -1,1 +1,40 @@
-// home
+@forward './gallery.scss';
+@use '../../shared/description.scss' as *;
+@use '../../shared/titles.scss' as *;
+
+.home {
+	height: 100%;
+}
+
+.home__articles__wrapper {
+	display: grid;
+	height: 100%;
+	grid-template-columns: 1fr 1fr;
+	column-gap: 2rem;
+}
+
+.home__article__section {
+	display: grid;
+	height: 100%;
+	grid-template-rows: 60% 40%;
+}
+
+.home__article__title {
+	@extend %title-60;
+}
+
+.home__article__media__number__text {
+	@extend %title-60;
+}
+
+.home__article__media__text {
+	@extend %title-60;
+}
+
+.home__article__paragraph__text {
+	@extend %description-20;
+}
+
+.home__article__date__text {
+	@extend %description-20;
+}

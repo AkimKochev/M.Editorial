@@ -1,8 +1,9 @@
-// import fonts
-// @font-face {
-// 	font-family: $font;
-// 	src: url('') format('woff2'), url('') format('woff');
-// 	font-weight: normal;
-// 	font-style: normal;
-// 	font-display: swap;
-// }
+@use '../utils/utils.scss' as *;
+
+@font-face {
+	font-family: $helvetica-neue;
+	src: url('../static/fonts/HelveticaNeue-Light.otf') format('otf');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}

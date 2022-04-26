@@ -1,0 +1,17 @@
+@use '../utils/mixins.scss' as *;
+@use '../shared/description.scss' as *;
+
+.navigation {
+	@extend %fix-top;
+
+	display: flex;
+	justify-content: space-between;
+	align-items: end;
+	padding: 20px;
+
+	&__menu__toggle {
+		@extend %description-20;
+
+		cursor: pointer;
+	}
+}

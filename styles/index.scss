@@ -1,5 +1,7 @@
-@use './base/base.scss';
-@use './shared/shared.scss';
-@use './components/components.scss';
+// @use './utils/utils.scss' as *;
+@use './base/base.scss' as *;
+@use './shared/shared.scss' as *;
+@use './components/components.scss' as *;
 
-@use './pages/pages.scss';
+@use './layout/layout.scss' as *;
+@use './pages/pages.scss' as *;
