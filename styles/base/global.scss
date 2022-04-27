@@ -4,7 +4,7 @@
 *::after,
 *::before {
 	box-sizing: border-box;
-	// user-select: none;
+	user-select: none;
 }
 
 img {
@@ -37,7 +37,7 @@ canvas {
 .content {
 	position: fixed;
 	inset: 0;
-	margin: 20px;
+	padding: 20px;
 }
 
 button {
