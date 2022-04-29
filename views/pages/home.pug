@@ -4,64 +4,59 @@ block variables
 	- var template = 'home'
 
 block content
-	.home
-		.home__articles__wrapper
-			.home__article__section
-				figure.home__article__media
-					img(src="images/matias-jacobi-lrNOAvCW5Qo-unsplash.jpg", alt="unsplash image")
-					img(src="images/diana-nazarali-2eSZy2ZU_DI-unsplash.jpg", alt="unsplash image")
+	.home__articles
+		.home__articles__article.left--article
+			figure.home__article__media
+				img.home__article__image(src="images/matias-jacobi-lrNOAvCW5Qo-unsplash.jpg", alt="unsplash image" data-article-id="1")
+				img.home__article__image(src="images/diana-nazarali-2eSZy2ZU_DI-unsplash.jpg", alt="unsplash image" data-article-id="2")
 
-				.home__article__description
-					.home__article__description__item
 
-						.home__article__title__wrapper
-							h2.home__article__title Dream Clouds Ghost Ground
-								//- .text__clip__wrapper
-								//-   span.home__article__title__text Dream Clouds
-								//- .text__clip__wrapper
-								//-   span.home__article__title__text Ghost Ground
-							h2.home__article__title Don't Breack it Into Nothing
+			.home__article__description__content
+				.home__article__title__wrapper(data-article-id="1")
+					h2.home__article__title__text Dream Clouds Ghost Ground
+				.home__article__title__wrapper(data-article-id="2")
+					h2.home__article__title__text Dream Clouds Ghost Ground
 
-						.home__article__description__right
-							.home__article__media__number__wrapper
-								h2.home__article__media__number__text 18
-								h2.home__article__media__number__text 20
-							.home__article__paragraph__wrapper
-								p.home__article__paragraph__text.
-									Connect artists to&shy;nature spaces
-								p.home__article__paragraph__text Last year was a&shy;long one
+				.home__article__media__digit__wrapper(data-article-id="1")
+					h2.home__article__media__digit__text 18
+				.home__article__media__digit__wrapper(data-article-id="2")
+					h2.home__article__media__digit__text 20
+				.home__article__description__header__wrapper(data-article-id="1")
+					p.home__article__description__text Connect artists to &shy;nature spaces
+				.home__article__description__header__wrapper(data-article-id="2")
+					p.home__article__description__text Last year was a &shy;long one
 
-					.home__article__description__item
-						.home__article__paragraph__wrapper
-							p.home__article__paragraph__text.
-								If the world moves on,&shy;will the lights stay on
-							p.home__article__paragraph__text.
-								There are lots of different ways&shy;
-								to describe people’s personalities.
 
-			.home__article__section
-				figure.home__article__media
-					img(src="images/matt-collamer-8UG90AYPDW4-unsplash.jpg", alt="unsplash image")
-					img(src="images/xander-ashwell-bhTjAUHHvSg-unsplash.jpg", alt="unsplash image")
+				.home__article__description__wrapper(data-article-id="1")
+					p.home__article__description__text If the world moves on, &shy;will the lights stay
+				.home__article__description__wrapper(data-article-id="2")
+					p.home__article__description__text There are lots of different ways &shy;to describe people’s personalities.
 
-				.home__article__description
-					.home__article__description__item
-						.home__article__date__wrapper
-							.home__article__paragraph__wrapper
-								p.home__article__date__text 2019
-								p.home__article__date__text 2022
-						.home__article__media__number__wrapper
-							h2.home__article__media__number__text 19
-							h2.home__article__media__number__text 21
 
-					.home__article__description__item
-						.home__article__title__wrapper
-							h1.home__article__title Everything Around
-							h1.home__article__title Nothing There
-						.home__article__paragraph__wrapper
-							p.home__article__paragraph__text.
-								All the long echoes sing the &shy;
-								same delight, this shortest day.
-							p.home__article__paragraph__text.
-								The more you know who you
-								are, and what you want
+		.home__articles__article.right--article
+			figure.home__article__media
+				img.home__article__image(src="images/matt-collamer-8UG90AYPDW4-unsplash.jpg", alt="unsplash image" data-article-id="1")
+				img.home__article__image(src="images/xander-ashwell-bhTjAUHHvSg-unsplash.jpg", alt="unsplash image" data-article-id="2")
+
+
+			.home__article__description__content
+				.home__article__date__wrapper(data-article-id="1")
+					p.home__article__date__text 2019
+				.home__article__date__wrapper(data-article-id="2")
+					p.home__article__date__text 2022
+
+				.home__article__media__digit__wrapper(data-article-id="1")
+					h2.home__article__media__digit__text 18
+				.home__article__media__digit__wrapper(data-article-id="2")
+					h2.home__article__media__digit__text 20
+
+
+				.home__article__title__wrapper(data-article-id="1")
+					h2.home__article__title__text Everything Around
+				.home__article__title__wrapper(data-article-id="2")
+					h2.home__article__title__text New world
+
+				.home__article__description__wrapper(data-article-id="1")
+					p.home__article__description__text Connect artists to &shy;nature spaces
+				.home__article__description__wrapper(data-article-id="2")
+					p.home__article__description__text All the long echoes sing the &shy;same delight, this shortest day.
