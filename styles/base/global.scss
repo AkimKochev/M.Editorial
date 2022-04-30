@@ -1,6 +1,7 @@
 @use '../utils/utils.scss' as *;
 @use '../shared/description.scss' as *;
 @use '../shared/titles.scss' as *;
+@use '../utils/variables.scss' as *;
 
 *,
 *::after,
@@ -17,6 +18,7 @@ img {
 html {
 	height: -webkit-fill-available;
 	font-size: calc(100vw / 1440 * 10);
+	cursor: none;
 }
 
 html,
@@ -49,6 +51,7 @@ canvas {
 	height: 100vh;
 	min-height: 100vh;
 	min-height: -webkit-fill-available;
+	background-color: $white-flight;
 }
 
 button {

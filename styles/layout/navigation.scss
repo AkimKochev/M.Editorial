@@ -9,9 +9,9 @@
 	align-items: end;
 	padding: 20px;
 
+	z-index: 8;
+
 	&__menu__toggle {
 		@extend %description-20;
-
-		cursor: pointer;
 	}
 }

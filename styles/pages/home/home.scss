@@ -11,6 +11,11 @@
 	gap: 2rem;
 }
 
+[data-article-id],
+[data-article-id] > * {
+	transition: 400ms ease-out;
+}
+
 .home__articles__article {
 	display: grid;
 	row-gap: 2rem;
