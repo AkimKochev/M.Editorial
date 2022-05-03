@@ -31,11 +31,11 @@ app.use(function (req, res, next) {
 });
 
 app.get('/', function (req, res, next) {
-	res.render('pages/home');
+	res.render('index');
 });
 
 app.get('/article', function (req, res, next) {
-	res.render('pages/article');
+	res.render('index');
 });
 
 app.all('*', async function (req, res, next) {

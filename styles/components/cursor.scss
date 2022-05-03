@@ -6,6 +6,8 @@
 	border-radius: 50%;
 	z-index: 10;
 	mix-blend-mode: difference;
+	pointer-events: none;
+	will-change: transform;
 }
 
 .cursor__inner {

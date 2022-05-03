@@ -1,62 +1,60 @@
-extends ../index.pug
 
-block variables
-	- var template = 'home'
+// todo change layout to grid
 
-block content
-	.home__articles
-		.home__articles__article.left--article
-			figure.home__article__media
-				img.home__article__image(src="images/matias-jacobi-lrNOAvCW5Qo-unsplash.jpg", alt="unsplash image" data-article-id="1")
-				img.home__article__image(src="images/diana-nazarali-2eSZy2ZU_DI-unsplash.jpg", alt="unsplash image" data-article-id="2")
+.home__articles
+	.home__articles__article.left--article
+		figure.home__article__media
+			img.home__article__image(src="images/matias-jacobi-lrNOAvCW5Qo-unsplash.jpg", alt="unsplash image" data-article-id="1")
+			img.home__article__image(src="images/diana-nazarali-2eSZy2ZU_DI-unsplash.jpg", alt="unsplash image" data-article-id="2")
 
 
-			.home__article__description__content
-				.home__article__title__wrapper(data-article-id="1")
-					h2.home__article__title__text Dream Clouds<br>Ghost Ground
-				.home__article__title__wrapper(data-article-id="2")
-					h2.home__article__title__text When You Make Monsters Out of Thoughts
+		.home__article__description__content
+			.home__article__title__wrapper(data-article-id="1")
+				h2.home__article__title__text Dream Clouds<br>Ghost Ground
+			.home__article__title__wrapper(data-article-id="2")
+				h2.home__article__title__text When You Make<br>Monsters Out of<br>Thoughts
 
-				.home__article__media__digit__wrapper(data-article-id="1")
-					h2.home__article__media__digit__text 18
-				.home__article__media__digit__wrapper(data-article-id="2")
-					h2.home__article__media__digit__text 20
-				.home__article__description__header__wrapper(data-article-id="1")
-					p.home__article__description__text Connect artists to nature spaces
-				.home__article__description__header__wrapper(data-article-id="2")
-					p.home__article__description__text Last year was a long one
-
-
-				.home__article__description__wrapper(data-article-id="1")
-					p.home__article__description__text If the world moves on, will the lights stay
-				.home__article__description__wrapper(data-article-id="2")
-					p.home__article__description__text There are lots of different ways to describe people’s personalities.
+			.home__article__media__digit__wrapper(data-article-id="1")
+				h2.home__article__media__digit__text 18
+			.home__article__media__digit__wrapper(data-article-id="2")
+				h2.home__article__media__digit__text 20
+			.home__article__description__header__wrapper(data-article-id="1")
+				p.home__article__description__text Connect artists to<br>nature spaces
+			.home__article__description__header__wrapper(data-article-id="2")
+				p.home__article__description__text Last year was a<br> long one
 
 
-		.home__articles__article.right--article
-			figure.home__article__media
+			.home__article__description__wrapper(data-article-id="1")
+				p.home__article__description__text If the world moves on,<br>will the lights stay
+			.home__article__description__wrapper(data-article-id="2")
+				p.home__article__description__text There are lots of different ways<br>to describe people’s personalities.
+
+
+	.home__articles__article.right--article
+		figure.home__article__media
+			a(href="/article")
 				img.home__article__image(src="images/matt-collamer-8UG90AYPDW4-unsplash.jpg", alt="unsplash image" data-article-id="1")
-				img.home__article__image(src="images/xander-ashwell-bhTjAUHHvSg-unsplash.jpg", alt="unsplash image" data-article-id="2")
+			img.home__article__image(src="images/xander-ashwell-bhTjAUHHvSg-unsplash.jpg", alt="unsplash image" data-article-id="2")
 
 
-			.home__article__description__content
-				.home__article__date__wrapper(data-article-id="1")
-					p.home__article__date__text 2019
-				.home__article__date__wrapper(data-article-id="2")
-					p.home__article__date__text 2022
+		.home__article__description__content
+			.home__article__date__wrapper(data-article-id="1")
+				p.home__article__date__text 2019
+			.home__article__date__wrapper(data-article-id="2")
+				p.home__article__date__text 2022
 
-				.home__article__media__digit__wrapper(data-article-id="1")
-					h2.home__article__media__digit__text 18
-				.home__article__media__digit__wrapper(data-article-id="2")
-					h2.home__article__media__digit__text 21
+			.home__article__media__digit__wrapper(data-article-id="1")
+				h2.home__article__media__digit__text 18
+			.home__article__media__digit__wrapper(data-article-id="2")
+				h2.home__article__media__digit__text 21
 
 
-				.home__article__title__wrapper(data-article-id="1")
-					h2.home__article__title__text Everything Around
-				.home__article__title__wrapper(data-article-id="2")
-					h2.home__article__title__text New world
+			.home__article__title__wrapper(data-article-id="1")
+				h2.home__article__title__text Everything Around
+			.home__article__title__wrapper(data-article-id="2")
+				h2.home__article__title__text New World
 
-				.home__article__description__wrapper(data-article-id="1")
-					p.home__article__description__text Connect artists to &shy;nature spaces
-				.home__article__description__wrapper(data-article-id="2")
-					p.home__article__description__text All the long echoes sing the &shy;same delight, this shortest day.
+			.home__article__description__wrapper(data-article-id="1")
+				p.home__article__description__text Connect artists to<br>nature spaces
+			.home__article__description__wrapper(data-article-id="2")
+				p.home__article__description__text All the long echoes sing the<br>same delight, this shortest day.

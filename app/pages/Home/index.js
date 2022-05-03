@@ -1,5 +1,7 @@
 import gsap from 'gsap';
 
+import {split} from 'utils/text.js';
+
 export default class Home {
 	constructor() {
 		this.splitText();
@@ -34,19 +36,22 @@ export default class Home {
 	}
 
 	splitText() {
-		const item = document.querySelector('h2');
-		const lines = item.innerHTML.split('<br>');
-		const parent = item.closest('div');
-		parent.innerHTML = '';
-		lines.forEach((line) => {
-			const wrapper = document.createElement('div');
-			const lineContainer = document.createElement('h2');
-			lineContainer.textContent = line;
+		const elementToSplit = {
+			title: document.querySelectorAll('h2'),
+			description: document.querySelectorAll('p'),
+		};
 
-			wrapper.insertAdjacentElement('beforeend', lineContainer);
-			wrapper.style.overflow = 'hidden';
-			parent.insertAdjacentElement('afterbegin', wrapper);
-		});
+		for (const element in elementToSplit) {
+			if (!elementToSplit.hasOwnProperty(element)) return;
+
+			elementToSplit[element].forEach((text) => {
+				split({
+					append: true,
+					element: text,
+					expression: '<br>',
+				});
+			});
+		}
 	}
 
 	animateIn() {
@@ -59,7 +64,15 @@ export default class Home {
 			if (!ids.length) return;
 			ids.forEach((id) => {
 				const child = id.children[0] ? id.children[0] : id;
-				child.style.transform = `translateY(${100 * current}%)`;
+				if (child.tagName === 'IMG') {
+					child.style.transform = `translateY(${100 * current + 10}%)`;
+					return;
+				}
+
+				[...child.children].forEach((child) => {
+					if (!child.children.length) return;
+					child.children[0].style.transform = `translateY(${100 * current + 10}%)`;
+				});
 			});
 		}
 	}
@@ -95,7 +108,15 @@ export default class Home {
 		];
 		ids.forEach((id) => {
 			const child = id.children[0] ? id.children[0] : id;
-			child.style.transform = 'translateY(-100%)';
+			if (child.tagName === 'IMG') {
+				child.style.transform = `translateY(-110%)`;
+				return;
+			}
+
+			[...child.children].forEach((child) => {
+				if (!child.children.length) return;
+				child.children[0].style.transform = `translateY(-110%)`;
+			});
 		});
 
 		this.currentIdArticle++;
@@ -106,7 +127,15 @@ export default class Home {
 		console.log(this.currentIdArticle);
 		ids.forEach((id) => {
 			const child = id.children[0] ? id.children[0] : id;
-			child.style.transform = 'translateY(0%)';
+			if (child.tagName === 'IMG') {
+				child.style.transform = `translateY(0%)`;
+				return;
+			}
+
+			[...child.children].forEach((child) => {
+				if (!child.children.length) return;
+				child.children[0].style.transform = `translateY(0%)`;
+			});
 		});
 	}
 
@@ -116,7 +145,15 @@ export default class Home {
 		];
 		ids.forEach((id) => {
 			const child = id.children[0] ? id.children[0] : id;
-			child.style.transform = 'translateY(100%)';
+			if (child.tagName === 'IMG') {
+				child.style.transform = `translateY(110%)`;
+				return;
+			}
+
+			[...child.children].forEach((child) => {
+				if (!child.children.length) return;
+				child.children[0].style.transform = `translateY(110%)`;
+			});
 		});
 
 		this.currentIdArticle--;
@@ -126,7 +163,15 @@ export default class Home {
 		console.log(this.currentIdArticle);
 		ids.forEach((id) => {
 			const child = id.children[0] ? id.children[0] : id;
-			child.style.transform = 'translateY(0%)';
+			if (child.tagName === 'IMG') {
+				child.style.transform = `translateY(0%)`;
+				return;
+			}
+
+			[...child.children].forEach((child) => {
+				if (!child.children.length) return;
+				child.children[0].style.transform = `translateY(0%)`;
+			});
 		});
 	}
 
@@ -142,23 +187,23 @@ export default class Home {
 		this.mousePos.inner.currentX = this.interpolate(
 			this.mousePos.inner.currentX,
 			this.mousePos.inner.targetX,
-			0.1
+			0.7
 		);
 		this.mousePos.inner.currentY = this.interpolate(
 			this.mousePos.inner.currentY,
 			this.mousePos.inner.targetY,
-			0.1
+			0.7
 		);
 
 		this.mousePos.outer.currentX = this.interpolate(
 			this.mousePos.outer.currentX,
 			this.mousePos.outer.targetX,
-			0.04
+			0.07
 		);
 		this.mousePos.outer.currentY = this.interpolate(
 			this.mousePos.outer.currentY,
 			this.mousePos.outer.targetY,
-			0.04
+			0.07
 		);
 
 		this.cursorInner.style.transform = `translate3d(${
@@ -178,5 +223,15 @@ export default class Home {
 		}px, 0)`;
 
 		requestAnimationFrame(this.animate.bind(this));
+	}
+
+	show() {
+		const parent = document.querySelector('.home__articles');
+		parent.classList.add(`home__articles--active`);
+	}
+
+	hide() {
+		const parent = document.querySelector('.home__articles');
+		parent.classList.remove(`home__articles--active`);
 	}
 }

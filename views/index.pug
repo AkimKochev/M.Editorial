@@ -38,10 +38,9 @@ html(lang="en" class=isDesktop ? "desktop" : isTablet ? "tablet" : isMobile ? "m
 		body
 			include ./partials/navigation
 			include ./partials/preloader
-			include ./partials/noscript
 			include ./partials/cursor
 
-			.content(data-template=template)
-				block content
-
+			include ./pages/home
+			//- include ./pages/four04
+			include ./pages/article
 
