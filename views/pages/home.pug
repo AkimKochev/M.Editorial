@@ -2,59 +2,109 @@
 // todo change layout to grid
 
 .home__articles
-	.home__articles__article.left--article
+	.home__articles__article(data-article-id="1")
 		figure.home__article__media
-			img.home__article__image(src="images/matias-jacobi-lrNOAvCW5Qo-unsplash.jpg", alt="unsplash image" data-article-id="1")
-			img.home__article__image(src="images/diana-nazarali-2eSZy2ZU_DI-unsplash.jpg", alt="unsplash image" data-article-id="2")
+			.home__article__image__wrapper
+				a.home__media__image__link(href="/article")
+					img.home__article__image(src="images/matias-jacobi-lrNOAvCW5Qo-unsplash.jpg", alt="unsplash image")
+			.home__article__image__wrapper
+				a.home__media__image__link(href="/article")
+					img.home__article__image(src="images/matt-collamer-8UG90AYPDW4-unsplash.jpg", alt="unsplash image")
 
+		.home__article__description
+			.home__description__header
+				.home__header__title
+					h2.home__description__title__text Dream Clouds<br>GhostGround
+				.home__description__header__aside
+					.home__description__header__aside
+						.home__header__aside__digit
+							h2.home__description__digit__text 18
+						.home__header__aside__paragraph
+							p.home__description__paragraph__text Connect artists to<br> nature space
 
-		.home__article__description__content
-			.home__article__title__wrapper(data-article-id="1")
-				h2.home__article__title__text Dream Clouds<br>Ghost Ground
-			.home__article__title__wrapper(data-article-id="2")
-				h2.home__article__title__text When You Make<br>Monsters Out of<br>Thoughts
+			.home__description__footer
+				.home__description__paragraph
+					p.home__description__paragraph__text If the world moves on,<br>will the lights stay
 
-			.home__article__media__digit__wrapper(data-article-id="1")
-				h2.home__article__media__digit__text 18
-			.home__article__media__digit__wrapper(data-article-id="2")
-				h2.home__article__media__digit__text 20
-			.home__article__description__header__wrapper(data-article-id="1")
-				p.home__article__description__text Connect artists to<br>nature spaces
-			.home__article__description__header__wrapper(data-article-id="2")
-				p.home__article__description__text Last year was a<br> long one
+		.home__article__description.description--right
+			.home__description__header
+				.home__header__date
+					p.home__description__date__text 2019
+				.home__header__digit
+					h2.home__description__digit__text 19
 
+			.home__description__footer
+				.home__footer__title
+					h2.home__description__title__text Everything Around
+				.home__footer__paragraph
+					.home__description__paragraph__text Connect artists to<br>nature spaces
 
-			.home__article__description__wrapper(data-article-id="1")
-				p.home__article__description__text If the world moves on,<br>will the lights stay
-			.home__article__description__wrapper(data-article-id="2")
-				p.home__article__description__text There are lots of different ways<br>to describe people’s personalities.
-
-
-	.home__articles__article.right--article
+	.home__articles__article(data-article-id="2")
 		figure.home__article__media
-			a(href="/article")
-				img.home__article__image(src="images/matt-collamer-8UG90AYPDW4-unsplash.jpg", alt="unsplash image" data-article-id="1")
-			img.home__article__image(src="images/xander-ashwell-bhTjAUHHvSg-unsplash.jpg", alt="unsplash image" data-article-id="2")
+			.home__article__image__wrapper
+				a.home__media__image__link(href="/article")
+					img.home__article__image(src="images/diana-nazarali-2eSZy2ZU_DI-unsplash.jpg", alt="unsplash image")
+			.home__article__image__wrapper
+				a.home__media__image__link(href="/article")
+					img.home__article__image(src="images/xander-ashwell-bhTjAUHHvSg-unsplash.jpg", alt="unsplash image")
+
+		.home__article__description
+			.home__description__header
+				.home__header__title
+					h2.home__description__title__text When You Make<br>Monsters Out of<br>Thoughts
+				.home__description__header__aside
+					.home__description__header__aside
+						.home__header__aside__digit
+							h2.home__description__digit__text 20
+						.home__header__aside__paragraph
+							p.home__description__paragraph__text Connect artists to<br> nature space
+
+			.home__description__footer
+				.home__description__paragraph
+					p.home__description__paragraph__text There are lots of different ways<br>to describe people’s personalities.
+
+		.home__article__description.description--right
+			.home__description__header
+				.home__header__date
+					p.home__description__date__text 2022
+				.home__header__digit
+					h2.home__description__digit__text 21
+
+			.home__description__footer
+				.home__footer__title
+					h2.home__description__title__text A New World
+				.home__footer__paragraph
+					.home__description__paragraph__text All the long echoes sing the<br>same delight, this shortest day.
 
 
-		.home__article__description__content
-			.home__article__date__wrapper(data-article-id="1")
-				p.home__article__date__text 2019
-			.home__article__date__wrapper(data-article-id="2")
-				p.home__article__date__text 2022
-
-			.home__article__media__digit__wrapper(data-article-id="1")
-				h2.home__article__media__digit__text 18
-			.home__article__media__digit__wrapper(data-article-id="2")
-				h2.home__article__media__digit__text 21
 
 
-			.home__article__title__wrapper(data-article-id="1")
-				h2.home__article__title__text Everything Around
-			.home__article__title__wrapper(data-article-id="2")
-				h2.home__article__title__text New World
+//- .home__articles
+//- 	.home__articles__article.left--article
+//- 		figure.home__article__media
+//- 			img.home__article__image(src="images/matias-jacobi-lrNOAvCW5Qo-unsplash.jpg", alt="unsplash image" data-article-id="1")
+//- 			img.home__article__image(src="images/diana-nazarali-2eSZy2ZU_DI-unsplash.jpg", alt="unsplash image" data-article-id="2")
 
-			.home__article__description__wrapper(data-article-id="1")
-				p.home__article__description__text Connect artists to<br>nature spaces
-			.home__article__description__wrapper(data-article-id="2")
-				p.home__article__description__text All the long echoes sing the<br>same delight, this shortest day.
+
+//- 		.home__article__description__content
+//- 			.home__article__title
+//- 				.home__article__title__wrapper(data-article-id="1")
+//- 					h2.home__article__title__text Dream Clouds<br>Ghost Ground
+//- 				.home__article__title__wrapper(data-article-id="2")
+//- 					h2.home__article__title__text When You Make<br>Monsters Out of<br>Thoughts
+
+//- 			.home__article__description
+//- 				.home__article__media__digit__wrapper(data-article-id="1")
+//- 					h2.home__article__media__digit__text 18
+//- 				.home__article__media__digit__wrapper(data-article-id="2")
+//- 					h2.home__article__media__digit__text 20
+//- 				.home__article__description__header__wrapper(data-article-id="1")
+//- 					p.home__article__description__text Connect artists to<br>nature spaces
+//- 				.home__article__description__header__wrapper(data-article-id="2")
+//- 					p.home__article__description__text Last year was a<br> long one
+
+
+//- 			.home__article__description__wrapper(data-article-id="1")
+//- 				p.home__article__description__text If the world moves on,<br>will the lights stay
+//- 			.home__article__description__wrapper(data-article-id="2")
+//- 				p.home__article__description__text There are lots of different ways<br>to describe people’s personalities.
