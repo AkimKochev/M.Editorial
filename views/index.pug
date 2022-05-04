@@ -33,7 +33,7 @@ html(lang="en" class=isDesktop ? "desktop" : isTablet ? "tablet" : isMobile ? "m
 		//- meta(name="twitter:description" content="")
 		//- meta(name="twitter:image" content=meta.data.image ? meta.data.image.url : '')
 
-		//- script(src="main.js" defer)
+		script(src="main.js" defer)
 
 		body
 			include ./partials/navigation
@@ -42,5 +42,5 @@ html(lang="en" class=isDesktop ? "desktop" : isTablet ? "tablet" : isMobile ? "m
 
 			include ./pages/home
 			//- include ./pages/four04
-			//- include ./pages/article
+			include ./pages/article
 

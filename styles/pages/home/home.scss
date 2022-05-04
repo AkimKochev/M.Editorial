@@ -11,14 +11,14 @@
 
 	display: flex;
 
-	// opacity: 0;
-	// visibility: hidden;
-	// overflow: hidden;
+	opacity: 0;
+	visibility: hidden;
+	overflow: hidden;
 
-	// &--active {
-	// 	visibility: visible;
-	// 	opacity: 1;
-	// }
+	&--active {
+		visibility: visible;
+		opacity: 1;
+	}
 }
 
 .home__articles__article {
@@ -30,64 +30,34 @@
 	right: 0;
 	position: absolute;
 	display: grid;
-	grid-template-rows: 60% 20% 20%;
+	grid-template-rows: 60% 40%;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 2rem;
 }
 
-// .home__articles__article {
-// 	display: grid;
-// 	row-gap: 2rem;
-// 	grid-template-rows: 70% calc(30% - 2rem);
-// }
+.home__article__description {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
 
-// .home__article__description__content {
-// 	position: relative;
-// }
+.home__description__header {
+	display: flex;
+	justify-content: space-between;
+}
 
-// .home__article__description__content > * {
-// 	position: absolute;
-// 	overflow: hidden;
-// }
+.home__description__header__aside {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
 
-// .left--article .home__article__title__wrapper {
-// 	top: 0;
-// 	left: 0;
-// }
+.home__header__date {
+	margin-inline: auto;
+}
 
-// .left--article .home__article__title__text > span:last-of-type {
-// 	text-indent: 1.5ch;
-// }
-
-// .home__article__media__digit__wrapper {
-// 	top: 0;
-// 	right: 0;
-// }
-
-// .left--article .home__article__description__header__wrapper {
-// 	top: 64px;
-// 	right: 0;
-
-// 	& p {
-// 		max-width: 18ch;
-// 	}
-// }
-
-// .left--article .home__article__description__wrapper {
-// 	bottom: 0;
-// 	left: 0;
-// }
-
-// .right--article .home__article__date__wrapper {
-// 	left: 50%;
-// 	transform: translateX(-50%);
-// 	top: 0;
-// }
-
-// .right--article .home__article__title__wrapper {
-// 	bottom: -10px;
-// 	left: 0;
-// }
-
-// .right--article .home__article__description__wrapper {
-// 	bottom: 0;
-// 	right: 0;
-// }
+.home__description__footer {
+	display: flex;
+	justify-content: space-between;
+	align-items: end;
+}

@@ -1,10 +1,14 @@
 import gsap from 'gsap';
 
+import Mouse from './components/Mouse.js';
+
 import Article from './pages/Article/index.js';
 import Home from './pages/Home/index.js';
 
 class App {
 	constructor() {
+		const mouse = new Mouse();
+
 		this.template = window.location.pathname;
 
 		this.createPages();
