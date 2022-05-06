@@ -1,7 +1,14 @@
+@use '../../utils/responsive.scss' as *;
+
 .home__article__media {
 	display: flex;
 	gap: 2rem;
 	grid-column: 1 / 3;
+
+	@include media('<phone') {
+		flex-direction: column;
+		height: 40vh;
+	}
 }
 
 .home__article__image__wrapper {

@@ -15,6 +15,7 @@ export default class Home {
 		this.changeArticle({scrollTo: -100, startFrom: 2});
 
 		window.addEventListener('wheel', this.scrollWheelHandler.bind(this));
+		window.addEventListener('touchstart', this.scrollWheelHandler.bind(this));
 	}
 
 	splitText() {
@@ -38,11 +39,11 @@ export default class Home {
 
 	setScrollTimeout() {
 		this.scrollTimeout = false;
-		setTimeout((_) => (this.scrollTimeout = true), 2000);
+		setTimeout((_) => (this.scrollTimeout = true), 1800);
 	}
 
 	scrollWheelHandler(event) {
-		console.log(this.scrollTimeout);
+		console.log(event);
 		if (!this.scrollTimeout) return;
 
 		if (event.deltaY >= 10) {
@@ -59,20 +60,6 @@ export default class Home {
 
 			this.setScrollTimeout();
 		}
-	}
-
-	resetTransform(element) {
-		return new Promise((resolve) => {
-			element.style.visibility = 'hidden';
-			element.style.opacity = '0';
-			element.style.transition = `transform .1s`;
-			element.style.transform = `translate3d(0%, 100%, 0)`;
-			element.addEventListener('transitionend', (_) => {
-				element.style.visibility = 'visible';
-				element.style.opacity = '1';
-				resolve();
-			});
-		});
 	}
 
 	changeArticle({scrollTo, startFrom = 1}) {
@@ -113,18 +100,18 @@ export default class Home {
 						currentIdArticle ===
 							`[data-article-id="${this.data.currentIdArticle}"]` &&
 							gsap.set(el, {
-								y: '100%',
+								y: '110%',
 								rotateX: `-10deg`,
 								scale: 1.3,
 							});
 						gsap.to(el, {
 							y: `${scrollTo * (this.data.currentIdArticle - i)}%`,
-							duration: 1.5,
-							ease: 'power2.out',
+							duration: 1.8,
+							ease: 'power3.out',
 							delay:
 								this.data.currentIdArticle - 1 === i ||
 								this.data.currentIdArticle + 1 === i
-									? 0.2
+									? 0.3
 									: 0,
 							rotateX: `0deg`,
 							scale: 1,
@@ -138,17 +125,24 @@ export default class Home {
 							currentIdArticle ===
 								`[data-article-id="${this.data.currentIdArticle}"]` &&
 								gsap.set(spanElement, {
-									y: '100%',
+									y: '110%',
 								});
 							gsap.to(spanElement, {
 								y: `${scrollTo * (this.data.currentIdArticle - i)}%`,
-								duration: 1,
+								duration: 1.2,
 								delay:
 									this.data.currentIdArticle - 1 === i ||
 									this.data.currentIdArticle + 1 === i
 										? 0
-										: 0.8,
-								ease: 'power2.out',
+										: this.data.currentIdArticle === i &&
+										  spanElement.closest('h2') &&
+										  spanElement.closest('.home__description__digit__text') == null
+										? 0.8
+										: this.data.currentIdArticle === i &&
+										  spanElement.closest('.home__description__digit__text')
+										? 1.2
+										: 1.5,
+								ease: 'power3.out',
 							});
 						});
 					});
@@ -160,6 +154,56 @@ export default class Home {
 	show() {
 		const parent = document.querySelector('.home__articles');
 		parent.classList.add(`home__articles--active`);
+
+		const currentIdArticle = document.querySelector(
+			`[data-article-id="${[this.data.currentIdArticle]}"]`
+		);
+
+		const articleElements = {
+			p: [...document.querySelectorAll(`[data-article-id="1"] p`)],
+			h2: [...document.querySelectorAll(`[data-article-id="1"] h2`)],
+			a: [
+				...document.querySelectorAll(
+					`[data-article-id="1"] .home__media__image__link`
+				),
+			],
+		};
+
+		for (const elements in articleElements) {
+			articleElements[elements].forEach(async (el) => {
+				if (el.tagName === 'A') {
+					gsap.set(el, {
+						y: '110%',
+						rotateX: `-10deg`,
+						scale: 1.3,
+					});
+					gsap.to(el, {
+						y: `${scrollTo * (this.data.currentIdArticle - 1)}%`,
+						duration: 2,
+						delay: 1,
+						ease: 'expo.out',
+						rotateX: `0deg`,
+						scale: 1,
+					});
+				}
+
+				[...el.children].forEach((span) => {
+					if (span.tagName === 'BR') return;
+
+					[...span.children].forEach(async (spanElement) => {
+						gsap.set(spanElement, {
+							y: '110%',
+						});
+						gsap.to(spanElement, {
+							y: `${scrollTo * (this.data.currentIdArticle - 1)}%`,
+							duration: 1.5,
+							ease: 'expo.out',
+							delay: 1,
+						});
+					});
+				});
+			});
+		}
 	}
 
 	hide() {

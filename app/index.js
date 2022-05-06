@@ -4,18 +4,26 @@ import Mouse from './components/Mouse.js';
 
 import Article from './pages/Article/index.js';
 import Home from './pages/Home/index.js';
+import Preloader from './components/Preloader.js';
 
 class App {
 	constructor() {
-		const mouse = new Mouse();
+		// const mouse = new Mouse();
 
 		this.template = window.location.pathname;
 
 		this.createPages();
 
+		this.createPreloader();
 		this.addLinkListener();
 		this.addEventListeners();
-		this.page.show();
+	}
+
+	createPreloader() {
+		this.preloader = new Preloader();
+		this.preloader.once('completed', () => {
+			this.page.show();
+		});
 	}
 
 	createPages() {

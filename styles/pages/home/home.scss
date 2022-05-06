@@ -1,5 +1,7 @@
 @forward './gallery.scss';
 
+@use '../../utils/responsive.scss' as *;
+
 .home__articles {
 	position: fixed;
 	top: 0;
@@ -19,20 +21,27 @@
 		visibility: visible;
 		opacity: 1;
 	}
+
+	@include media('<phone') {
+	}
 }
 
 .home__articles__article {
 	padding-inline: 20px;
-	padding-block: 50px 20px;
+	padding-block: 50px 14px;
 	top: 0;
 	left: 0;
 	bottom: 0;
 	right: 0;
 	position: absolute;
 	display: grid;
-	grid-template-rows: 60% 40%;
+	grid-template-rows: 60% calc(40% - 2rem);
 	grid-template-columns: repeat(2, 1fr);
 	gap: 2rem;
+
+	@include media('<phone') {
+		display: block;
+	}
 }
 
 .home__article__description {
@@ -61,4 +70,12 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: end;
+}
+
+h2 {
+	margin-bottom: -5.5px;
+}
+
+h2:nth-child(2) > span:nth-child(2) {
+	margin-left: 25%;
 }
