@@ -1,9 +1,11 @@
 import gsap from 'gsap';
 
 import {split} from 'utils/text.js';
+import {CSS} from 'utils/variables.js';
 
 export default class Home {
 	constructor() {
+		this.scrollTimeout = true;
 		this.data = {
 			articles: [...document.querySelectorAll('[data-article-id]')],
 			currentIdArticle: 1,
@@ -34,16 +36,28 @@ export default class Home {
 		}
 	}
 
+	setScrollTimeout() {
+		this.scrollTimeout = false;
+		setTimeout((_) => (this.scrollTimeout = true), 2000);
+	}
+
 	scrollWheelHandler(event) {
+		console.log(this.scrollTimeout);
+		if (!this.scrollTimeout) return;
+
 		if (event.deltaY >= 10) {
 			if (this.data.currentIdArticle + 1 > this.data.articles.length) return;
 			this.data.currentIdArticle++;
 			this.changeArticle({scrollTo: -100});
+
+			this.setScrollTimeout();
 		}
 		if (event.deltaY <= -10) {
 			if (this.data.currentIdArticle - 1 <= 0) return;
 			this.data.currentIdArticle--;
 			this.changeArticle({scrollTo: 100});
+
+			this.setScrollTimeout();
 		}
 	}
 
@@ -86,43 +100,56 @@ export default class Home {
 			const articleElements = {
 				p: [...document.querySelectorAll(`${currentIdArticle} p`)],
 				h2: [...document.querySelectorAll(`${currentIdArticle} h2`)],
-				img: [...document.querySelectorAll(`${currentIdArticle} img`)],
+				a: [
+					...document.querySelectorAll(
+						`${currentIdArticle} .home__media__image__link`
+					),
+				],
 			};
-			console.log(i);
 
 			for (const elements in articleElements) {
 				articleElements[elements].forEach(async (el) => {
-					if (el.tagName === 'IMG') {
-						if (
-							currentIdArticle === `[data-article-id="${this.data.currentIdArticle}"]`
-						)
-							await this.resetTransform(el);
-
-						el.style.transition = `transform 1.5s ${
-							this.data.currentIdArticle === i ? 0 : 0.6
-						}s cubic-bezier(0.55, 0, 0.175, 1)`;
-						el.style.transform = `translate3d(0, ${
-							scrollTo * (this.data.currentIdArticle - i)
-						}%, 0)`;
+					if (el.tagName === 'A') {
+						currentIdArticle ===
+							`[data-article-id="${this.data.currentIdArticle}"]` &&
+							gsap.set(el, {
+								y: '100%',
+								rotateX: `-10deg`,
+								scale: 1.3,
+							});
+						gsap.to(el, {
+							y: `${scrollTo * (this.data.currentIdArticle - i)}%`,
+							duration: 1.5,
+							ease: 'power2.out',
+							delay:
+								this.data.currentIdArticle - 1 === i ||
+								this.data.currentIdArticle + 1 === i
+									? 0.2
+									: 0,
+							rotateX: `0deg`,
+							scale: 1,
+						});
 					}
+
 					[...el.children].forEach((span) => {
 						if (span.tagName === 'BR') return;
 
 						[...span.children].forEach(async (spanElement) => {
-							if (
-								currentIdArticle === `[data-article-id="${this.data.currentIdArticle}"]`
-							)
-								await this.resetTransform(spanElement);
-
-							spanElement.style.transition = `transform 1.5s ${
-								this.data.currentIdArticle - 1 === i ||
-								this.data.currentIdArticle + 1 === i
-									? 0
-									: 0.6
-							}s cubic-bezier(0.55, 0, 0.175, 1)`;
-							spanElement.style.transform = `translate3d(0, ${
-								scrollTo * (this.data.currentIdArticle - i)
-							}%, 0)`;
+							currentIdArticle ===
+								`[data-article-id="${this.data.currentIdArticle}"]` &&
+								gsap.set(spanElement, {
+									y: '100%',
+								});
+							gsap.to(spanElement, {
+								y: `${scrollTo * (this.data.currentIdArticle - i)}%`,
+								duration: 1,
+								delay:
+									this.data.currentIdArticle - 1 === i ||
+									this.data.currentIdArticle + 1 === i
+										? 0
+										: 0.8,
+								ease: 'power2.out',
+							});
 						});
 					});
 				});

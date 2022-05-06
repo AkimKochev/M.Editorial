@@ -1,1 +1,20 @@
-// Style
+@use '../utils/variables.scss' as *;
+
+.preloader {
+	background-color: $white-flight;
+	z-index: 9;
+	padding-inline: 20px;
+	padding-block: 50px 20px;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	position: absolute;
+
+	&__container {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+}
