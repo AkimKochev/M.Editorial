@@ -2,6 +2,7 @@
 @use '../shared/description.scss' as *;
 @use '../shared/titles.scss' as *;
 @use '../utils/variables.scss' as *;
+@use '../utils/responsive.scss' as *;
 
 *,
 *::after,
@@ -18,9 +19,15 @@ img {
 }
 
 html {
-	height: -webkit-fill-available;
-	min-height: 100vh;
+	// height: -webkit-fill-available;
+	max-height: 100%;
 	font-size: calc(100vw / 1440 * 10);
+
+	overscroll-behavior-y: contain;
+
+	@include media('<phone') {
+		font-size: calc(100vw / 415 * 10);
+	}
 }
 
 html,
@@ -42,6 +49,14 @@ a {
 	height: 100%;
 }
 
+p,
+h1,
+h2,
+h3,
+h4 {
+	line-height: 0.5;
+}
+
 canvas {
 	position: relative;
 	pointer-events: none;
@@ -54,18 +69,19 @@ button {
 }
 
 p {
-	@extend %description-20;
-	line-height: 0.5;
+	@extend %description-14;
 }
 
 h2 {
 	@extend %title-60;
-	line-height: 0.5;
+}
+
+h3 {
+	@extend %description-28;
 }
 
 h1 {
 	@extend %title-90;
-	line-height: 0.5;
 }
 
 span {

@@ -1,15 +1,19 @@
 @use '../utils/variables.scss' as *;
+@use '../utils/responsive.scss' as *;
 
 %title-60 {
 	font-family: $helvetica-neue;
 	font-size: 6rem;
 
-	// @include media('<phone') {
-	// 	font-size: 3rem;
-	// }
+	@include media('<phone') {
+		font-size: 2.8rem;
+	}
 }
 
 %title-90 {
 	font-family: $helvetica-neue;
 	font-size: 9rem;
+	@include media('<phone') {
+		font-size: 4rem;
+	}
 }

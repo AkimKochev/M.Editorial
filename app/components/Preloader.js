@@ -1,14 +1,17 @@
 import EventEmitter from 'events';
 import gsap from 'gsap';
 
+import {split} from 'utils/text.js';
+
 export default class Preloader extends EventEmitter {
 	constructor() {
 		super();
 		this.parent = document.querySelector('.preloader');
-		this.percentageText = document.querySelector('.preloader__number__text');
+		this.percentageText = document.querySelector(
+			'.preloader__number__text span span'
+		);
 		this.svg = document.querySelector('.preloader__container svg');
 		this.length = 0;
-
 		this.loadAssets();
 	}
 
@@ -30,22 +33,24 @@ export default class Preloader extends EventEmitter {
 	allLoaded() {
 		const tl = gsap.timeline({
 			onComplete: () => {
-				this.emit('completed');
 				this.destroy();
+				this.emit('completed');
 			},
-			delay: 1.4,
 			duration: 1.5,
 			ease: 'power3.out',
-			stagger: 0.3,
 		});
 
 		tl.to(this.percentageText, {
 			y: '-110%',
 		});
 
-		tl.to(this.svg, {
-			y: '-110%',
-		});
+		tl.to(
+			this.svg,
+			{
+				y: '-110%',
+			},
+			'<'
+		);
 	}
 
 	onLoad() {

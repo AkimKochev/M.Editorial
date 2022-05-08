@@ -1,213 +1,145 @@
 import gsap from 'gsap';
 
-import {split} from 'utils/text.js';
-import {CSS} from 'utils/variables.js';
+import {selectArticleElements} from 'utils/dom.js';
+import {SCROLL_TIMEOUT, NEXT, PREVIOUS} from '../../utils/config.js';
 
-export default class Home {
+import Page from '../../classes/Page.js';
+import {changeArticle} from './article.js';
+
+import {getElements} from '../../utils/text.js';
+
+export default class Home extends Page {
 	constructor() {
+		super({
+			classes: {active: 'home__articles--active'},
+			element: '.home__articles',
+			elements: {},
+		});
 		this.scrollTimeout = true;
-		this.data = {
-			articles: [...document.querySelectorAll('[data-article-id]')],
-			currentIdArticle: 1,
-		};
 
-		this.splitText();
-		this.changeArticle({scrollTo: -100, startFrom: 2});
-
-		window.addEventListener('wheel', this.scrollWheelHandler.bind(this));
-		window.addEventListener('touchstart', this.scrollWheelHandler.bind(this));
+		changeArticle({scrollTo: -125, startFrom: 2, data: this.data});
 	}
 
-	splitText() {
-		const elementToSplit = {
-			title: document.querySelectorAll('h2'),
-			description: document.querySelectorAll('p'),
-		};
+	touchMove(e) {
+		e.preventDefault();
+		this.yStart = e.touches ? e.touches[0].clientY : e.clientY;
+	}
 
-		for (const element in elementToSplit) {
-			if (!elementToSplit.hasOwnProperty(element)) return;
+	touchStart(e) {
+		this.yEnd = e.touches ? e.touches[0].clientY : e.clientY;
+	}
 
-			elementToSplit[element].forEach((text) => {
-				split({
-					append: true,
-					element: text,
-					expression: '<br>',
-				});
-			});
-		}
+	touchEnd(e) {
+		this.scrollWheelHandler();
 	}
 
 	setScrollTimeout() {
 		this.scrollTimeout = false;
-		setTimeout((_) => (this.scrollTimeout = true), 1800);
+		setTimeout((_) => (this.scrollTimeout = true), SCROLL_TIMEOUT);
 	}
 
 	scrollWheelHandler(event) {
-		console.log(event);
 		if (!this.scrollTimeout) return;
 
-		if (event.deltaY >= 10) {
+		const scrollDown =
+			event?.deltaY >= 10 ||
+			(this.yStart < this.yEnd && Math.abs(this.yStart - this.yEnd) > 80);
+
+		const scrollUp =
+			event?.deltaY <= -10 ||
+			(this.yStart > this.yEnd && Math.abs(this.yStart - this.yEnd) > 80);
+
+		if (scrollDown) {
 			if (this.data.currentIdArticle + 1 > this.data.articles.length) return;
+
 			this.data.currentIdArticle++;
-			this.changeArticle({scrollTo: -100});
+			changeArticle({scrollTo: NEXT, data: this.data});
 
 			this.setScrollTimeout();
 		}
-		if (event.deltaY <= -10) {
+		if (scrollUp) {
 			if (this.data.currentIdArticle - 1 <= 0) return;
+
 			this.data.currentIdArticle--;
-			this.changeArticle({scrollTo: 100});
+			changeArticle({scrollTo: PREVIOUS, data: this.data});
 
 			this.setScrollTimeout();
 		}
 	}
 
-	changeArticle({scrollTo, startFrom = 1}) {
-		const previusArticle = document.querySelector(
-			`[data-article-id="${[
-				this.data.currentIdArticle - 1 < 1 ? 1 : this.data.currentIdArticle - 1,
-			]}"]`
+	show(id = this.data.currentIdArticle) {
+		const articleElements = selectArticleElements(
+			['p', 'h2', '.home__media__image__link'],
+			`[data-article-id="${id}"]`
 		);
-		const nextArticle = document.querySelector(
-			`[data-article-id="${[
-				this.data.currentIdArticle + 1 > this.data.articles.length
-					? this.data.articles.length
-					: this.data.currentIdArticle + 1,
-			]}"]`
-		);
-		const currentArticle = document.querySelector(
-			`[data-article-id="${[this.data.currentIdArticle]}"]`
-		);
-		previusArticle.style.zIndex = 1;
-		nextArticle.style.zIndex = 1;
-		currentArticle.style.zIndex = 2;
 
-		for (let i = startFrom; i <= this.data.articles.length; i++) {
-			const currentIdArticle = `[data-article-id="${[i]}"]`;
-			const articleElements = {
-				p: [...document.querySelectorAll(`${currentIdArticle} p`)],
-				h2: [...document.querySelectorAll(`${currentIdArticle} h2`)],
-				a: [
-					...document.querySelectorAll(
-						`${currentIdArticle} .home__media__image__link`
-					),
-				],
-			};
+		const elements = getElements(articleElements);
 
-			for (const elements in articleElements) {
-				articleElements[elements].forEach(async (el) => {
-					if (el.tagName === 'A') {
-						currentIdArticle ===
-							`[data-article-id="${this.data.currentIdArticle}"]` &&
-							gsap.set(el, {
-								y: '110%',
-								rotateX: `-10deg`,
-								scale: 1.3,
-							});
-						gsap.to(el, {
-							y: `${scrollTo * (this.data.currentIdArticle - i)}%`,
-							duration: 1.8,
-							ease: 'power3.out',
-							delay:
-								this.data.currentIdArticle - 1 === i ||
-								this.data.currentIdArticle + 1 === i
-									? 0.3
-									: 0,
-							rotateX: `0deg`,
-							scale: 1,
-						});
-					}
-
-					[...el.children].forEach((span) => {
-						if (span.tagName === 'BR') return;
-
-						[...span.children].forEach(async (spanElement) => {
-							currentIdArticle ===
-								`[data-article-id="${this.data.currentIdArticle}"]` &&
-								gsap.set(spanElement, {
-									y: '110%',
-								});
-							gsap.to(spanElement, {
-								y: `${scrollTo * (this.data.currentIdArticle - i)}%`,
-								duration: 1.2,
-								delay:
-									this.data.currentIdArticle - 1 === i ||
-									this.data.currentIdArticle + 1 === i
-										? 0
-										: this.data.currentIdArticle === i &&
-										  spanElement.closest('h2') &&
-										  spanElement.closest('.home__description__digit__text') == null
-										? 0.8
-										: this.data.currentIdArticle === i &&
-										  spanElement.closest('.home__description__digit__text')
-										? 1.2
-										: 1.5,
-								ease: 'power3.out',
-							});
-						});
-					});
+		elements.forEach((element) => {
+			if (element.classList.contains('home__media__image__link')) {
+				console.log(element);
+				gsap.set(element, {
+					scale: 1.4,
+					y: `125%`,
+				});
+				gsap.to(element, {
+					y: `0%`,
+					duration: 1.5,
+					ease: 'power3.out',
+					rotateX: `0deg`,
+					scale: 1,
+					delay: 0.8,
+				});
+			} else {
+				gsap.set(element, {
+					y: '110%',
+				});
+				gsap.to(element, {
+					y: `0%`,
+					duration: 1.5,
+					ease: 'power3.out',
+					delay: 0.8,
 				});
 			}
-		}
-	}
-
-	show() {
-		const parent = document.querySelector('.home__articles');
-		parent.classList.add(`home__articles--active`);
-
-		const currentIdArticle = document.querySelector(
-			`[data-article-id="${[this.data.currentIdArticle]}"]`
-		);
-
-		const articleElements = {
-			p: [...document.querySelectorAll(`[data-article-id="1"] p`)],
-			h2: [...document.querySelectorAll(`[data-article-id="1"] h2`)],
-			a: [
-				...document.querySelectorAll(
-					`[data-article-id="1"] .home__media__image__link`
-				),
-			],
-		};
-
-		for (const elements in articleElements) {
-			articleElements[elements].forEach(async (el) => {
-				if (el.tagName === 'A') {
-					gsap.set(el, {
-						y: '110%',
-						rotateX: `-10deg`,
-						scale: 1.3,
-					});
-					gsap.to(el, {
-						y: `${scrollTo * (this.data.currentIdArticle - 1)}%`,
-						duration: 2,
-						delay: 1,
-						ease: 'expo.out',
-						rotateX: `0deg`,
-						scale: 1,
-					});
-				}
-
-				[...el.children].forEach((span) => {
-					if (span.tagName === 'BR') return;
-
-					[...span.children].forEach(async (spanElement) => {
-						gsap.set(spanElement, {
-							y: '110%',
-						});
-						gsap.to(spanElement, {
-							y: `${scrollTo * (this.data.currentIdArticle - 1)}%`,
-							duration: 1.5,
-							ease: 'expo.out',
-							delay: 1,
-						});
-					});
-				});
-			});
-		}
+		});
 	}
 
 	hide() {
-		const parent = document.querySelector('.home__articles');
-		parent.classList.remove(`home__articles--active`);
+		return new Promise((resolve, reject) => {
+			const articleElements = selectArticleElements(
+				['p', 'h2', '.home__media__image__link'],
+				`[data-article-id="${this.data.currentIdArticle}"]`
+			);
+			const elements = getElements(articleElements);
+
+			const tl = gsap.timeline({onComplete: resolve});
+			elements.forEach((element) => {
+				if (element.tagName === 'A') {
+					tl.to(
+						element,
+						{
+							y: `-125%`,
+							duration: 1.5,
+							delay: 0,
+							ease: 'power3.out',
+							// rotateX: `10deg`,
+							scale: 1.4,
+						},
+						'<'
+					);
+				} else {
+					tl.to(
+						element,
+						{
+							y: `-110%`,
+							duration: 1.5,
+							ease: 'power3.out',
+							delay: 0,
+						},
+						'<'
+					);
+				}
+			});
+		});
 	}
 }

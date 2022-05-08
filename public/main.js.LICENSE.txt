@@ -18,19 +18,33 @@
  * @author: Jack Doyle, jack@greensock.com
 */
 
+/*! ../../animations/articleTransition.js */
+
+/*! ../../classes/Page.js */
+
+/*! ../../utils/config.js */
+
+/*! ../../utils/text.js */
+
 /*! ../modules/logger/index.js */
 
 /*! ../node_modules/mini-css-extract-plugin/dist/hmr/hotModuleReplacement.js */
 
+/*! ../utils/dom.js */
+
 /*! ../utils/log.js */
+
+/*! ../utils/text.js */
 
 /*! ./CSSPlugin.js */
 
 /*! ./Logger */
 
+/*! ./article.js */
+
 /*! ./clients/WebSocketClient.js */
 
-/*! ./components/Mouse.js */
+/*! ./components/Navigation.js */
 
 /*! ./components/Preloader.js */
 
@@ -88,9 +102,9 @@
 
 /*! tapable/lib/SyncBailHook */
 
-/*! utils/text.js */
+/*! utils/dom.js */
 
-/*! utils/variables.js */
+/*! utils/text.js */
 
 /*! webpack/hot/emitter.js */
 
@@ -102,6 +116,10 @@
   !*** ./app/index.js ***!
   \**********************/
 
+/*!**************************!*\
+  !*** ./app/utils/dom.js ***!
+  \**************************/
+
 /*!***************************!*\
   !*** ./app/utils/text.js ***!
   \***************************/
@@ -110,17 +128,21 @@
   !*** ./styles/index.scss ***!
   \***************************/
 
-/*!********************************!*\
-  !*** ./app/utils/variables.js ***!
-  \********************************/
+/*!*****************************!*\
+  !*** ./app/classes/Page.js ***!
+  \*****************************/
 
-/*!*********************************!*\
-  !*** ./app/components/Mouse.js ***!
-  \*********************************/
+/*!*****************************!*\
+  !*** ./app/utils/config.js ***!
+  \*****************************/
 
 /*!*********************************!*\
   !*** ./app/pages/Home/index.js ***!
   \*********************************/
+
+/*!***********************************!*\
+  !*** ./app/pages/Home/article.js ***!
+  \***********************************/
 
 /*!************************************!*\
   !*** ./app/pages/Article/index.js ***!
@@ -133,6 +155,10 @@
 /*!*************************************!*\
   !*** ./app/components/Preloader.js ***!
   \*************************************/
+
+/*!**************************************!*\
+  !*** ./app/components/Navigation.js ***!
+  \**************************************/
 
 /*!***************************************!*\
   !*** ./node_modules/events/events.js ***!
@@ -153,6 +179,10 @@
 /*!********************************************!*\
       !*** ./client-src/modules/logger/index.js ***!
       \********************************************/
+
+/*!*********************************************!*\
+  !*** ./app/animations/articleTransition.js ***!
+  \*********************************************/
 
 /*!*********************************************!*\
   !*** ./node_modules/webpack/hot/emitter.js ***!

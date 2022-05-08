@@ -4,9 +4,9 @@ const {merge} = require('webpack-merge');
 const config = require('./webpack.config.common.cjs');
 
 module.exports = merge(config, {
-  mode: 'production',
+	mode: 'production',
 
-  output: {
-    path: path.join(__dirname, 'public'),
-  },
+	output: {
+		path: path.join(__dirname, 'public'),
+	},
 });

@@ -68,6 +68,26 @@ export function calculate(spans) {
 	return lines;
 }
 
+export function getElements(elementsArray) {
+	const elements = [];
+
+	for (const element in elementsArray) {
+		elementsArray[element].forEach((el) => {
+			if (el.tagName === 'A') elements.push(el);
+
+			[...el.children].forEach((span) => {
+				if (span.tagName === 'BR') return;
+
+				[...span.children].forEach((spanElement) => {
+					elements.push(spanElement);
+				});
+			});
+		});
+	}
+
+	return elements;
+}
+
 function splitText(text, expression) {
 	const splits = text.split('<br>');
 

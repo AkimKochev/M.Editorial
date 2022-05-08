@@ -1,0 +1,106 @@
+@use '../../utils/responsive.scss' as *;
+
+// about
+.article {
+	position: fixed;
+	top: 0;
+	left: 0;
+	padding-inline: 20px;
+	padding-block: 0 20px;
+	width: 100%;
+	min-height: -webkit-fill-available;
+
+	display: flex;
+	justify-content: end;
+	flex-direction: column;
+	gap: 2rem;
+
+	@include media('<phone') {
+		height: 100%;
+	}
+
+	opacity: 0;
+	visibility: hidden;
+	overflow: hidden;
+
+	&--active {
+		visibility: visible;
+		opacity: 1;
+	}
+}
+
+.article__title {
+	position: absolute;
+	top: 0;
+	right: 7%;
+	@include media('<phone') {
+		position: absolute;
+		top: 20%;
+		left: 20px;
+	}
+}
+
+.article__main__description {
+	height: 100%;
+
+	& .article__media {
+		height: 100%;
+		overflow: hidden;
+	}
+}
+
+.article .article__image__wrapper {
+	overflow: hidden;
+	height: 100%;
+}
+
+.article__content {
+	display: grid;
+	width: 100%;
+	grid-template-columns: 60% 40%;
+	grid-template-rows: 1fr;
+	height: 40%;
+	column-gap: 2rem;
+
+	@include media('<phone') {
+		column-gap: 0;
+		row-gap: 1rem;
+		grid-template-columns: 1fr;
+	}
+}
+
+.article__main__description {
+	& .article__image {
+		position: absolute;
+	}
+	& .article__image__wrapper {
+		position: relative;
+	}
+}
+.article__description__aside {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	gap: 1rem;
+}
+
+.article__cite {
+	@include media('<phone') {
+		position: absolute;
+		top: 33%;
+		left: 20px;
+	}
+}
+
+.description__aside__footer {
+	display: flex;
+	align-items: end;
+	gap: 1rem;
+
+	@include media('<phone') {
+	}
+
+	& .article__media {
+		width: 55%;
+	}
+}
